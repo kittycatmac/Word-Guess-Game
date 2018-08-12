@@ -1,64 +1,66 @@
-
-    var word;
-    var allowedGuesses;
-    var guessWord;
-    var wrongGuesses;
-
-    var wordElement = document.getElementById('word');
-    var letterCountElement = document.getElementById('letterCount');
-    var lettersGuessedElement = document.getElementById('lettersGuessed');
-
-    var words = ["sid", 
-    "rex", 
-    "andy", 
-    "woody", 
-    "buzz", 
-    "aliens", 
-    "slinky", 
-    "little bo peep",
-    "hamm",
-    "sergeant",
-    "shark", 
-    "troll"];
-    var letters = ["abcdefghijklmnopqrstuvwyxz"];
-    
-
-// computer random picking from "word" array
-    var computerPick = words[Math.floor(Math.random()*words.length)];
-    var guessWord = new Array(computerPick.length);
-
-    function initializeGame() {
-// computer random picking from "word" array
-        var computerPick = words[Math.floor(Math.random()*words.length)];
-        var guessWord = new Array(computerPick.length);
-        allowedGuesses = 25;
-        correctGuess = [];
-        boneYard = [];
-        
-// empty variable computer guess with _ by for loop*/
-    for (var i = 0; i < guessWord.length; i++) {
-    guessWord.push('_');
+var words = ["sid", 
+"rex", 
+"andy", 
+"woody", 
+"buzz", 
+"aliens", 
+"slinky", 
+"little bo peep",
+"hamm",
+"sergeant",
+"shark", 
+"troll"];
+var game = {
+  guessed: [],
+  left: 15,
+  
+  start: function() {
+    this.complete = false;
+    this.word = words[Math.floor(Math.random() * words.length)];
+    this.$right = document.getElementById('worddiv');
+    this.$wrong = document.getElementById('yard');
+    this.$remain = document.getElementById('remain');
+    this.$right.innerHTML = '_'.repeat(this.word.length);
+  },
+  
+  guess: function(letter) {
+    if (this.left > 0 && this.complete != true) {
+      if (this.word.indexOf(letter) > -1 || this.guessed.indexOf(letter) > -1) {
+        this.right(letter);
+      } else {
+        this.wrong(letter);
+      }
     }
+  },
+  
+  right: function(letter) {
+    for(var i = 0; i < this.word.length; i++) {
+      if (this.word[i] == letter) {
+        var word = this.$right.innerHTML.split('');
+        word[i] = letter;
+        this.$right.innerHTML = word.join('');
+      }
+    }
+    if (this.$right.innerHTML.indexOf(' _ ') < 0) {
+      alert('you win!');
+      this.complete = true;
+    }
+  },
+  
+  wrong: function(letter) {
+    this.guessed.push(letter);
+    this.$wrong.innerHTML += ' ' + letter;
+    this.left--;
+    this.$remain.innerHTML = this.left;
+    if (this.left < 1) {
+      alert('you lose! '+ this.word);
+      this.complete = true;
+    }
+  }
+};
 
-// my console for allowedGuesses and  guessWord
-    wordElement.innerHTML = guessWord.join('_');
-    letterCountElement.innerHTML = allowedGuesses;
-}
-
-//print hidden word by _ length
-    document.getElementById("word").innerHTML = guessWord;
-    
-//update guesses
-    function updateGuesses(letter) {
-
-}
-//compare the letter to the letters in the hidden computer pick    
-//create event listener for one up key
-    document.onkeyup = function (event) {
-        var lettersGuessed =String.fromCharCode(event.keyCode).toLocaleLowerCase();
-        updateGuesses(lettersGuessed);
-        checkWin();
-    };
-
-
-var Game = function()
+game.start();
+document.onkeyup = function(event) {
+  var letter = String.fromCharCode(event.keyCode).toLowerCase();
+  game.guess(letter);
+};    
