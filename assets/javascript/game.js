@@ -32,7 +32,8 @@ var game = {
       }
     }
   },
- //ERROR fix the replace of letter to  _ index to win game  
+ //ERROR fix the replace of letter to  _ index to win game 
+ //also need to add function when a word has more than one letter the letter stays out of the bone yard 
   right: function(letter) {
     for(var i = 0; i < this.word.length; i++) {
       if (this.word[i] == letter) {
@@ -63,8 +64,21 @@ game.start();
 document.onkeyup = function(event) {
   var letter = String.fromCharCode(event.keyCode).toLowerCase();
   game.guess(letter);
-};    
-//auto play again 
+};  
+
+//music player
+$(".my_audio").trigger('load');
+function play_audio(task) {
+    if(task == 'play'){
+         $(".my_audio").trigger('play');
+    }
+    if(task == 'stop'){
+         $(".my_audio").trigger('pause');
+         $(".my_audio").prop("currentTime",0);
+    }
+}
+
+//auto play again ?>
 //$(document).ready(function(document) {
    // $('#playAgain').click(document);
     //});
