@@ -1,0 +1,19 @@
+body {
+    background-image: url("http://kidzarea.net/wp-content/uploads/2018/05/slinky-dog-character-from-toy-story-pixar-planet-fr-with-regard-to-toy-story-slinky.jpg");
+    color: beige;
+    font-family: fantasy;
+}
+
+.container {
+    box-sizing: border-box;
+    text-align: center;
+    width: 50%;
+    float: left;
+}
+
+.row {
+    box-sizing: border-box;
+    height: 200px;
+    width: 400px;
+    float: right;
+}

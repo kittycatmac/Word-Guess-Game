@@ -4,25 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Word Guess Game</title>
-    
+    <title>Word Guessing Game</title>
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 </head>
 <body>
-        <h1>Mr. Potatoe Head Guess Game</h1>   
-        <p>Press any key to get started</p>
-    <div class="container"></div>
-        <div class="row">
+        <div class="container">
+        <h1>Mr. Potato Head Guessing Game</h1>   
+        <p id="playAgain">Press any key to get started</p>
         <h2>Guess the word:</h2>
-        <p id="worddiv"></p>
-        <!--<h2>winnings</h2>
-        <div id="win"></div>-->
+        <p id="right">
         <p>
         <span id="remain">15</span> guesses remaining
-        </p>    
+        </p>   
         <h4>bone yard</h4>
         <p id="yard"></p>
         </div>
-    </div>
+        <div class="row"><img src="assets/images/broken potatoe head.gif" alt="broken mr potato head">
+        </div>
     <script src="assets/javascript/game.js"></script>
 </body>
 </html>
