@@ -20,12 +20,12 @@ var game = {
     this.$right = document.getElementById('right');
     this.$wrong = document.getElementById('yard');
     this.$remain = document.getElementById('remain');
-    this.$right.innerHTML = ' _ '.repeat(this.word.length);
+    this.$right.innerHTML = '_'.repeat(this.word.length);
   },
 //compare the letter to the letters in the hidden computer pick   
   guess: function(letter) {
     if (this.left > 0 && this.complete != true) {
-      if (this.word.indexOf(letter) > 0 || this.guessed.indexOf(letter) > 0) {
+      if (this.word.indexOf(letter) > -1 || this.guessed.indexOf(letter) > -1) {
         this.right(letter);
       } else {
         this.wrong(letter);
@@ -79,6 +79,6 @@ function play_audio(task) {
 }
 
 //auto play again ?>
-//$(document).ready(function(document) {
-   // $('#playAgain').click(document);
-    //});
+$(document).ready(function(document) {
+    $('#playAgain').click(document);
+    });
