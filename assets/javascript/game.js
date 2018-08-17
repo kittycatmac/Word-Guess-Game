@@ -45,6 +45,7 @@ var game = {
     if (this.$right.innerHTML.indexOf('_') < 0) {
       alert('you win!');
       this.complete = true;
+      window.game.reload(true);//not working either object reload but I might have to get rid of local var?
     }
   },
   
@@ -78,7 +79,9 @@ function play_audio(task) {
     }
 }
 
-//auto play again ?>
-$(document).ready(function(document) {
+//auto play again ?>not working
+$(document).reload(function(document) {
     $('#playAgain').click(document);
     });
+
+$(game).call(start);
